@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSSCraft  Navbar </title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --primary: #7c5cff;
+    --primary-light: #a78bfa;
+    --text: #f1f1f6;
+    --text-dim: #9a9ab0;
+    --border: #2a2a38;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2rem;
+    background: rgba(26, 26, 36, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .menu-toggle { display: none; }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .hamburger span {
+    width: 26px;
+    height: 3px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: 0.3s ease;
+  }
+
+  @media (max-width: 700px) {
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--surface);
+      padding: 0 2rem;
+      gap: 1rem;
+      max-height: 0;
+      overflow: hidden;
+      visibility: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease, visibility 0.3s;
+      border-bottom: 1px solid var(--border);
+    }
+    .hamburger { display: flex; }
+    .menu-toggle:checked ~ .nav-links {
+      max-height: 300px;
+      padding: 1rem 2rem;
+      visibility: visible;
+    }
+    .menu-toggle:checked ~ .hamburger span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .menu-toggle:checked ~ .hamburger span:nth-child(2) { opacity: 0; }
+    .menu-toggle:checked ~ .hamburger span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(124,92,255,0.15), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(167,139,250,0.12), transparent 40%);
+  }
+
+  .hero-badge {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--primary-light);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 1rem;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p {
+    color: var(--text-dim);
+    max-width: 500px;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(124,92,255,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(124,92,255,0.55); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { background: var(--surface); }
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">CSSCraft</div>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <ul class="nav-links">
+      <li><a href="#">Components</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">GitHub</a></li>
+    </ul>
+    <label for="menu-toggle" class="hamburger">
+      <span></span><span></span><span></span>
+    </label>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">HTML & CSS
+
+
+    </div>
+    <h1>A component library built with <span>only CSS</span></h1>
+    <p>8+ interactive UI components — accordions, modals, tabs, theme toggle — all without a single line of JavaScript.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn btn-primary">View Components</a>
+      <a href="#" class="btn btn-outline">GitHub Repo</a>
+    </div>
+  </section>
+
+</body>
+</html>
