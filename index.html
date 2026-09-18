@@ -178,6 +178,124 @@
     border: 1px solid var(--border);
   }
   .btn-outline:hover { background: var(--surface); }
+  
+  /* ===== SECTION LABEL ===== */
+  .section {
+    padding: 4rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  .section-subtitle {
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  /* ===== CARDS (3D tilt on hover) ===== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    perspective: 1000px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card:hover {
+    transform: rotateX(4deg) rotateY(-4deg) translateY(-6px);
+    box-shadow: 0 20px 40px rgba(124,92,255,0.25);
+    border-color: var(--primary);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .card p {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  /* ===== BUTTON VARIANTS ===== */
+  .btn-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    padding: 0.8rem 1.5rem;
+  }
+  .btn-ghost:hover { color: var(--text); background: var(--surface); border-radius: 8px; }
+
+  .btn-disabled {
+    background: var(--surface);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .btn-loading {
+    background: var(--primary);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .btn-danger {
+    background: #ef4444;
+    color: white;
+    box-shadow: 0 4px 20px rgba(239,68,68,0.4);
+  }
+  .btn-danger:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(239,68,68,0.55); }
+  
+  
 </style>
 </head>
 <body>
@@ -201,12 +319,47 @@
 
     </div>
     <h1>A component library built with <span>only CSS</span></h1>
-    <p>8+ interactive UI components — accordions, modals, tabs, theme toggle — all without a single line of JavaScript.</p>
+    <p>4+ interactive UI components — navigation, feature cards, and button variants — all without a single line of JavaScript.</p>
     <div class="hero-buttons">
       <a href="#" class="btn btn-primary">View Components</a>
       <a href="#" class="btn btn-outline">GitHub Repo</a>
     </div>
   </section>
+   <!-- ===== CARDS SECTION ===== -->
+  <section class="section">
+    <h2 class="section-title">Feature Cards</h2>
+    <p class="section-subtitle">Hover to see the 3D tilt effect — pure CSS transforms</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Fast</h3>
+        <p>There's no JavaScript slowing things down here — everything you see loads and reacts the moment the page opens.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Customizable</h3>
+        <p>Built entirely with CSS variables, so themes and colors are easy to change.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Responsive</h3>
+        <p>Works smoothly across mobile, tablet, and desktop breakpoints.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== BUTTONS SECTION ===== -->
+  <section class="section">
+    <h2 class="section-title">Button Variants</h2>
+    <p class="section-subtitle">6 different button styles, all pure CSS</p>
+    <div class="btn-showcase">
+      <a href="#" class="btn btn-primary">Primary</a>
+      <a href="#" class="btn btn-outline">Outline</a>
+      <a href="#" class="btn btn-ghost">Ghost</a>
+      <a href="#" class="btn btn-disabled">Disabled</a>
+      <a href="#" class="btn btn-loading"><span class="spinner"></span> Loading</a>
+      <a href="#" class="btn btn-danger">Danger</a>
+    </div>
+  </section>
 </body>
 </html>
